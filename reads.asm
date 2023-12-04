@@ -1,4 +1,5 @@
 ;Taking input string and printing it
+;while taking input add $ at the last of the string
 .model small
 
 printn macro p
