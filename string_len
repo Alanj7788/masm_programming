@@ -1,0 +1,43 @@
+;take string from user and print it and also its length
+.model small
+
+printn macro p
+    lea dx, p
+    mov ah, 09h
+    int 21h
+endm
+
+.data
+    buffer db 40 ; 
+    msg1 db 'Enter a string:$'
+    msg2 db 10,13,'You entered:$'
+    msg3 db 10,13,'Length:$'
+
+.code
+    mov ax, @data
+    mov ds, ax
+
+    printn msg1
+    
+    lea dx, buffer  
+    mov ah, 0Ah    
+    int 21h       
+  
+    printn msg2
+ 
+    ; Print the entered string (use the buffer directly)
+    lea dx, buffer+2
+    mov ah, 09h
+    int 21h
+
+    printn msg3
+
+    mov dl,buffer+1
+    add dl,30h
+    sub dl,1
+    mov ah,02h
+    int 21h
+ 
+    mov ah, 4ch
+    int 21h
+end
